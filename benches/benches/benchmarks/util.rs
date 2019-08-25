@@ -21,7 +21,7 @@ use ckb_types::{
         TransactionView,
     },
     h160, h256,
-    packed::{CellDep, CellInput, CellOutput, OutPoint, ProposalShortId, Script},
+    packed::{Byte32, CellDep, CellInput, CellOutput, OutPoint, ProposalShortId, Script},
     prelude::*,
     H160, H256, U256,
 };
@@ -438,7 +438,7 @@ fn create_2out_transaction(
         .build()
 }
 
-pub fn dao_data(shared: &Shared, parent: &HeaderView, txs: &[TransactionView]) -> Bytes {
+pub fn dao_data(shared: &Shared, parent: &HeaderView, txs: &[TransactionView]) -> Byte32 {
     let mut seen_inputs = HashSet::new();
     // In case of resolving errors, we just output a dummp DAO field,
     // since those should be the cases where we are testing invalid
